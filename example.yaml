@@ -1,0 +1,38 @@
+esphome:
+  platform: 
+  board: 
+  includes:
+    - tof_vl53l1x.h
+  libraries:
+    - "VL53L1x"
+
+wifi:
+  ssid: !secret ssid
+  password: !secret password
+
+# Enable logging
+logger:
+
+ota:
+
+api:
+
+# https://esphome.io/components/i2c.html
+i2c:  # example for Wemos LOLIN D2 mini
+  sda:  GPIO5  
+  scl:  GPIO4
+  scan: True
+  # VL53L1X, 0x29
+  frequency: 400kHz
+
+sensor:
+- platform: custom
+  lambda: |-
+    auto my_sensor = new MyCustomSensor();
+    App.register_component(my_sensor);
+    return {my_sensor};
+
+  sensors:
+    name: "Distance"
+    accuracy_decimals: 0
+    unit_of_measurement: "mm"
