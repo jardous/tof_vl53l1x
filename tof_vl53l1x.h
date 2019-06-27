@@ -8,7 +8,7 @@ VL53L1X tof_sensor;
 class MyCustomSensor : public PollingComponent, public Sensor {
  public:
   // constructor
-  MyCustomSensor() : PollingComponent(15000) {} //60*60000) {}  // polling every hour
+  MyCustomSensor() : PollingComponent(15000) {} // polling every 15s
 
   void setup() override {
     // This will be called by App.setup()
@@ -34,7 +34,7 @@ class MyCustomSensor : public PollingComponent, public Sensor {
     if (!tof_sensor.timeoutOccurred()) {
       publish_state(mm);
     } else {
-      ESP_LOGE("VL53L1X custom sensor", "Timeout during readRangeSingleMillimeters().");
+      ESP_LOGE("VL53L1X custom sensor", "Timeout during read().");
     }
   }
 };

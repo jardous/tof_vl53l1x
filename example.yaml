@@ -13,10 +13,6 @@ wifi:
 # Enable logging
 logger:
 
-ota:
-
-api:
-
 # https://esphome.io/components/i2c.html
 i2c:  # example for Wemos LOLIN D2 mini
   sda:  GPIO5  
